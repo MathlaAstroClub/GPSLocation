@@ -19,38 +19,26 @@ import android.support.v7.app.AlertDialog;
  */
 
 public class GpsService extends Service implements LocationListener {
-    private final Context _context;
+    private static final long MIN_JARAK_GPS_UPDATE = 10;               // meter
 
     // cek apakah GPS aktif ?
-
-    boolean isGPSEnable = false;
+    private static final long MIN_WAKTU_GPS_UPDATE = 1000 * 60 * 1;
 
     // cek network aktif ?
-
+    private final Context _context;
+    protected LocationManager locManager;
+    boolean isGPSEnable = false;
     boolean isNetworkEnable = false;
-
-
     boolean canGetLocation = false;
 
 
-    Location location;
-
-    double latitude;
-
-    double longitude;
-
-
     // GPS akan update ketika jarak sudah berubah lebih dari 10 meter
-
-    private static final long MIN_JARAK_GPS_UPDATE = 10;               // meter
+    Location location;
 
 
     // GPS akan update pada waktu interval
-
-    private static final long MIN_WAKTU_GPS_UPDATE = 1000 * 60 * 1;
-
-
-    protected LocationManager locManager;
+    double latitude;
+    double longitude;
 
 
     public GpsService(Context context)
@@ -389,5 +377,4 @@ public class GpsService extends Service implements LocationListener {
 
     }
 
-}
 }
